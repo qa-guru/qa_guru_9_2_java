@@ -1,5 +1,11 @@
 package guru.qa;
 
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
+
+import static com.codeborne.selenide.Selenide.$;
+
 public class HelloWorld {
 
     boolean aBoolean = false; //*
@@ -11,42 +17,37 @@ public class HelloWorld {
     float aFloat = 1.0F;
     double aDouble = 1.0D; //*
 
-    static class Human {
-        int age = 0; // 0
-        String name = "unnamed human"; // null
-
-        public void sayName() {
-            System.out.println(name);
-        }
-
-        public void sayAge() {
-            System.out.println(age);
-        }
-
-        public void incrementAge() {
-            age = age + 1;
-        }
-    }
-
-
     // модификатор доступа ||static -> возвращаемое значение -> имя -> (аргументы)
     public static void main(String[] args) {
         int age = 10;
-        String message = "HelloWorld!";
-        Human dima = new Human();
-        Human alex = new Human();
-        dima.name = "Дима";
-        dima.age = 32;
-        alex.name = "Александр";
-        alex.age = 32;
-        dima.sayName();
-        alex.sayName();
 
-        dima.incrementAge();
+        String message = "HelloWorld!";
+
+        Human dima = new Human(4, "Дима");
+        Human alex = new Human(5, "Александр");
+
+        dima.setAge(1);
+        alex.setAge(32);
+
+        dima.sayName();
         dima.sayAge();
+        dima.sayWeight();
+        dima.incrementAge();
+        dima.commonName = "Не человек";
+
+        Configuration.browser = "chrome";
+
+        Human.sayClassName();
+
+        alex.sayName();
         alex.sayAge();
-//        System.out.println(message);
+        alex.sayWeight();
+        System.out.println(message);
+
+
     }
 
-
+    int summ(int i, int i1) {
+        return i + i1;
+    }
 }
